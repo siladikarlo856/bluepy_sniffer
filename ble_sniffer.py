@@ -32,24 +32,26 @@ class BleSnifferThread(object):
             os.remove("myData.txt")
         os.mknod("myData.txt")
 
-        while(True):
-            devices = scanner.scan(1.0)
+        while True:
+            devices = scanner.scan(0.1)
 
             for dev in devices:
                 if dev.addr == 'd7:d1:6a:27:c7:c8':
                     for (adtype, desc, value) in dev.getScanData():
-                        value = value[6] + value[7] + value[4] + value[5] +value[2] +value[3]+ value[1]+ value[2]
+                        value = value[6] + value[7] + value[4] + value[5] + value[2] + value[3] + value[1] + value[2]
                         temp = (struct.unpack('!f', bytes.fromhex(value))[0])
-                        print("nRF52-DK Temperatura:  %f" % (temp))
+                        timestamp = time.time() - startTime
+                        print("Timestamp: %f nRF52-DK Temperatura:  %f" % (timestamp, temp))
 
+                        with open("myData.txt", 'a+') as myFile:
+                            myFile.write("%f,%f,%s\n" %(timestamp, temp, 'nRF52832'))
 
                 if dev.addr == 'da:0b:5e:4f:af:97':
                     for (adtype, desc, value) in dev.getScanData():
-                        value = value[6] + value[7] + value[4] + value[5] +value[2] +value[3]+ value[1]+ value[2]
+                        value = value[6] + value[7] + value[4] + value[5] + value[2] + value[3] + value[1] + value[2]
                         temp = (struct.unpack('!f', bytes.fromhex(value))[0])
                         timestamp = time.time() - startTime
-                        print("Timestamp: %f " % timestamp)
-                        print("nRF52840-DK Temperatura:  %f" % (temp))
+                        print("Timestamp: %f nRF52840-DK Temperatura:  %f" % (timestamp, temp))
 
                         with open("myData.txt", 'a+') as myFile:
-                            myFile.write("%f,%f\n" %(timestamp, temp))
+                            myFile.write("%f,%f,%s\n" %(timestamp, temp, 'nRF52840'))
