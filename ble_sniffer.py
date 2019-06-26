@@ -6,6 +6,7 @@ import os
 
 import struct
 
+
 class BleSnifferThread(object):
     """
     The run() method will be started and it will run in the background
@@ -28,6 +29,12 @@ class BleSnifferThread(object):
         thread.start()  # Start the execution
 
     def appendMeasurement(self, timestamp, temp, boardId):
+        """ Debug print of measurement and append measurement record into the file.
+        :param timestamp: seconds from start
+        :param temp: ambient temperature in celsius degrees
+        :param boardId: board ID mark
+        :return:
+        """
         # debug print
         print("Timestamp: %f \tDevice: %s -> Temperatura: %.2f" % (timestamp, boardId, temp))
         # append record in file

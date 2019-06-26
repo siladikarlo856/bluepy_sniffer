@@ -23,13 +23,13 @@ def main():
     plt.ylabel('Temperatura [°C]')
 
     def myAnimateFunc(i):
-        graphData = open('myData.txt', 'r').read();
+        graphData = open('myData.txt', 'r').read()
         if graphData:
             lines = graphData.split('\n')
-            xs840=[]
-            ys840=[]
-            xs832=[]
-            ys832=[]
+            xs840 = []
+            ys840 = []
+            xs832 = []
+            ys832 = []
             for line in lines:
                 if len(line) > 1:
                     x,y,t = line.split(',')
