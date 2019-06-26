@@ -26,6 +26,8 @@ class BleSnifferThread(object):
         thread.start()  # Start the execution
 
     def appendMeasurement(self, timestamp, temp, boardId):
+        # debug print
+        print("Timestamp: %f \tDevice: %s -> Temperatura: %.2f" % (timestamp, boardId, temp))
         with open(self.recordFile, 'a+') as myFile:
             myFile.write("%f,%f,%s\n" % (timestamp, temp, boardId))
 
@@ -58,13 +60,9 @@ class BleSnifferThread(object):
                     timestamp = time.time() - startTime
 
                     if (value[0] + value[1]) == 'ab':
-                        # debug print
-                        print("Timestamp: %f nRF52-DK Temperatura:  %.2f" % (timestamp, temp))
                         self.appendMeasurement(timestamp, temp, 'nRF52832')
 
                     if (value[0] + value[1]) == 'cd':
-                        # debug print
-                        print("Timestamp: %f nRF52840-DK Temperatura:  %.2f" % (timestamp, temp))
                         self.appendMeasurement(timestamp, temp, 'nRF52840')
 
 
