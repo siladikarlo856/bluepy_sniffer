@@ -24,16 +24,16 @@ find /usr/ -name bluepy-helper
 
 ### Installing
 
-//TODO:
-
+For Python 3, you use pip3:
+```
+$ sudo apt-get install python3-pip libglib2.0-dev
+$ sudo pip3 install bluepy
+$ sudo pip3 install matplotlib
+```
 
 ## Built With
 
-//TODO:
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+Python 3
 
 
 ## Authors
@@ -42,7 +42,4 @@ find /usr/ -name bluepy-helper
 
 
 ## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* [bluepy by Ian Harvey](https://github.com/IanHarvey/bluepy)
